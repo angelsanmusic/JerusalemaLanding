@@ -13,7 +13,7 @@ const Footer = () => {
           <h2 className="text-lg text-white font-bold mb-4">
             About Us
           </h2>
-          <p className="text-gray-300">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod, necessitatibus.</p>
+          <p className="text-gray-300">Since 2015, we ve been adding color to your spaces with the highest quality.</p>
         </div>
         <div>
         <h2 className="text-lg text-white font-bold mb-4">Quick Links</h2>
