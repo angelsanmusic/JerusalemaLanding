@@ -79,4 +79,4 @@ const MainHome = () => {
   )
 }
 
-export default git 
+export default MainHome
