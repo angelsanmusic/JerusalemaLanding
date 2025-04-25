@@ -42,7 +42,7 @@ const MainHome = () => {
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-center md:gap-8">
       <div className="md:col-span-1">
         <div className="max-w-lg md:max-w-none">
-          <h2 className="text-2xl font-semibold text-gray-900 sm:text-3xl  py-4 px-2">
+          <h2 className="text-2xl font-semibold text-gray-900 sm:text-3xl capitalize py-4 px-2">
           This industrial paint is designed for durability and easy maintenance.
           </h2>
 

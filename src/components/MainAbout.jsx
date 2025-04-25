@@ -10,7 +10,7 @@ const MainAbout = () => {
       <div>
         <div className="max-w-lg md:max-w-none">
           <h2 className="text-2xl  text-gray-900 ">
-            Since 2018, we ve been adding color to your spaces with the highest quality. 
+            Since 2020, we ve been adding color to your spaces with the highest quality. 
           </h2>
         </div>
       </div>

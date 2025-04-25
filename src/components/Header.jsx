@@ -1,5 +1,5 @@
   import {  Link } from "react-router-dom";
-import logo from "../assets/logo.png"
+import logo1 from "../assets/logo1.svg"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 
@@ -14,7 +14,7 @@ const Header = () => {
         <div className="container px-4 mx-auto relative text-sm">
             <div className="flex justify-between items-center">
               <div className="flex items-center flex-shrink-0"> 
-                <img className="h-20 w-15 mr-1 " src={logo} alt="logo" />
+                <img className="h-20 w-15 mr-1 " src={logo1} alt="logo" />
                 <span className="text-xl tracking-tight items-center">Jerusalema Diamond</span>
               </div>
                 <ul className="hidden lg:flex ml-14 space-x-12 ">
