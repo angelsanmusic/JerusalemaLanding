@@ -5,7 +5,7 @@
 import img10 from "../assets/img10.webp"
 import img11 from "../assets/img11.webp"
 import img12 from "../assets/img12.webp"
-import img13 from "../assets/img13.webp"
+
 
 import img15 from "../assets/img15.webp"
 import img16 from "../assets/img16.webp"
@@ -24,7 +24,7 @@ const MainProjects = () => {
       <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img10} alt="" />
       <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img11} alt="" />
       <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img12} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img13} alt="" />
+     
       <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img15} alt="" />
       <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img16} alt="" />
       <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img17} alt="" />

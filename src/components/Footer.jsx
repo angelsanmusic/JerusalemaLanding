@@ -37,7 +37,10 @@ const Footer = () => {
         </div>
       </container>
       <div className="border-t border-gray-600 p-4 text-gray-300 text-center mt-6">
-        <p>Copyright © 2024 Jerusalema Diamond Painting</p>
+        <p>© 2025 Jerusalema Diamond Company</p>
+        <span>
+          All rights reserved
+        </span>
       </div>
       
     </footer>

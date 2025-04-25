@@ -22,7 +22,7 @@ const MainContact = () => {
           </div>
           <div className="inline-flex space-x-2 items-center">
            <ion-icon name="location-outline"></ion-icon>
-           <span> 11, Street 342 Abcds</span>
+           <span> Atlanta, Georgia</span>
           </div>
         </div>
         <div className="bg-white rounded-xl shadow-lg p-8 text-gray-600">
