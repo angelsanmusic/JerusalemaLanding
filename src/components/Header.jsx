@@ -1,52 +1,68 @@
-  import {  Link } from "react-router-dom";
-import logo from "../assets/logo.png"
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Header = () => {
-  const[mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-  const toggleNavbar =() =>{
-      setMobileDrawerOpen(!mobileDrawerOpen);
-
-  };
   return (
-    <nav className="sticky top-0 z-50 py-3 backdrop-blur-md border-b border-neutral-700/80">
-        <div className="container px-4 mx-auto relative text-sm">
-          <div className="flex justify-between items-center">
-          <div className="flex items-center flex-shrink-0"> 
-               <img className="h-20 w-15 mr-1 " src={logo} alt="logo" />
-              <span className="text-xl tracking-tight items-center">Jerusalema Diamond</span>
-            </div>
-            <ul className="hidden lg:flex ml-14 space-x-12 ">
-                <li className="hover:text-white hover:bg-blue-700 px-3 py-1 rounded-xl duration-300 ease-in"><Link to="/">Home</Link></li>
-                <li className="hover:text-white hover:bg-blue-700 px-3 py-1 rounded-xl duration-300 ease-in"><Link to="/About">About Us</Link></li>
-                <li className="hover:text-white hover:bg-blue-700 px-3 py-1 rounded-xl duration-300 ease-in"><Link to="/Projects">Projects</Link></li>
-                <li className="hover:text-white hover:bg-blue-700 px-3 py-1 rounded-xl duration-300 ease-in"><Link to="/Contact">Contact</Link></li>
-            </ul>
-            <div className="lg:hidden md:flex flex-col justify-center">
-                      <button onClick={toggleNavbar}>
-                         {mobileDrawerOpen ? <X /> : <Menu />}  
-                      </button>
-              </div>   
-             </div>
+    <motion.header
+      className="w-full text-gray-700 bg-white border-t border-gray-100 shadow-sm body-font"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <div className="container flex flex-col flex-wrap items-center p-2 mx-4 md:flex-row">
+        <nav className="flex flex-wrap items-center text-base lg:w-2/5 md:ml-auto">
+          {[
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+            { name: "Services", path: "/services" },
+            { name: "Projects", path: "/projects" },
+            
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.1, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to={item.path}
+                className="mr-5 font-medium transition-all duration-100 hover:scale-110 hover:-translate-y-1 hover:text-amber-500"
+              >
+                {item.name}
+              </Link>
+            </motion.div>
+          ))}
+        </nav>
 
-        
-         </div>
-         {mobileDrawerOpen &&(
-            <div className="fixed right-0 z-20  w-full p-12 flex flex-col justify-center items-center  lg:hidden bg-white/90">
-                <ul>
-                <li className="hover:text-blue-800 py-4"><Link to="/">Home</Link></li>
-                  <li className="hover:text-blue-800 py-4"><Link to="/About">About Us</Link></li>
-                  <li className="hover:text-blue-800 py-4"><Link to="/Projects">Projects</Link></li>
-                  <li className="hover:text-blue-800 py-4"><Link to="/Contact">Contact</Link></li>  
-                    
-                    
-                </ul>
+        <Link to="/">
+          <motion.img
+            className="w-auto h-40"
+            src={logo}
+            alt="Logo de la empresa"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          />
+        </Link>
 
-            </div>
-        )}
-    </nav>
-  )
-}
+        <motion.div
+          className="inline-flex items-center h-full ml-5 lg:w-2/5 lg:justify-end lg:ml-0"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <Link
+            to="/contact"
+            className="px-4 py-2 text-xs font-bold text-white uppercase transition-all duration-150 bg-amber-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none ease"
+          >
+            Contact Us
+          </Link>
+        </motion.div>
+      </div>
+    </motion.header>
+  );
+};
 
-export default Header
+export default Header;
