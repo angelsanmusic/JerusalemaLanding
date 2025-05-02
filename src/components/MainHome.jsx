@@ -181,7 +181,6 @@ const ParallaxSection = ({ scrollY }) => {
           </div>
         </div>
       </div>
-      
     </motion.div>
   );
 };
@@ -194,7 +193,6 @@ const FeatureCard = ({ color, title, scrollY }) => {
       transition={{ type: "spring", stiffness: 50 }}
     >
       <p className="text-xl font-medium mt-3">{title}</p>
-      
     </motion.div>
   );
 };
@@ -210,11 +208,11 @@ const MainHome = () => {
 
   const features = [
     { color: "bg-red-500", title: "Expertise in Industrial Coatings" },
-    { color: "bg-orange-500", title: "High-Quality Workmanship"},
-    { color: "bg-yellow-500", title: "Strong Compliance & Safety Standards"},
-    { color: "bg-lime-500", title: "Efficiency & Project Management Skills"},
-    { color: "bg-teal-500", title: "Versatility & Adaptability"},
-    { color: "bg-indigo-500", title: "Advanced Equipment & Technology"},
+    { color: "bg-orange-500", title: "High-Quality Workmanship" },
+    { color: "bg-yellow-500", title: "Strong Compliance & Safety Standards" },
+    { color: "bg-lime-500", title: "Efficiency & Project Management Skills" },
+    { color: "bg-teal-500", title: "Versatility & Adaptability" },
+    { color: "bg-indigo-500", title: "Advanced Equipment & Technology" },
   ];
 
   return (
@@ -236,5 +234,3 @@ const MainHome = () => {
 };
 
 export default MainHome;
-
-

@@ -1,6 +1,3 @@
-
-
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -43,7 +40,9 @@ const MainContact = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Request a Quote</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Request a Quote
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
@@ -101,20 +100,42 @@ const MainContact = () => {
         >
           <h3 className="text-2xl font-bold mb-3">Need a Quote?</h3>
           <p className="text-lg text-blue-100">
-            Contact us for **industrial painting** solutions. We provide **high-quality coatings** and **protective treatments** for all types of projects.
+            Contact us for **industrial painting** solutions. We provide
+            **high-quality coatings** and **protective treatments** for all
+            types of projects.
           </p>
 
           <div className="mt-6 space-y-4">
             <div className="flex items-center space-x-2">
-              <ion-icon name="call-outline" className="text-white text-xl"></ion-icon>
-              <span><a href="tel:+1 (470) 336-8172" className="hover:underline">+1 (470) 336-8172</a></span>
+              <ion-icon
+                name="call-outline"
+                className="text-white text-xl"
+              ></ion-icon>
+              <span>
+                <a href="tel:+1 (470) 336-8172" className="hover:underline">
+                  +1 (470) 336-8172
+                </a>
+              </span>
             </div>
             <div className="flex items-center space-x-2">
-              <ion-icon name="mail-outline" className="text-white text-xl"></ion-icon>
-              <span><a href="mailto:jerusalemadiamond@gmail.com" className="hover:underline">jerusalemadiamond@gmail.com</a></span>
+              <ion-icon
+                name="mail-outline"
+                className="text-white text-xl"
+              ></ion-icon>
+              <span>
+                <a
+                  href="mailto:jerusalemadiamond@gmail.com"
+                  className="hover:underline"
+                >
+                  jerusalemadiamond@gmail.com
+                </a>
+              </span>
             </div>
             <div className="flex items-center space-x-2">
-              <ion-icon name="location-outline" className="text-white text-xl"></ion-icon>
+              <ion-icon
+                name="location-outline"
+                className="text-white text-xl"
+              ></ion-icon>
               <span>11, Street 342 Abcds</span>
             </div>
           </div>
