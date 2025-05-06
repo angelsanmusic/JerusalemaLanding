@@ -1,86 +1,82 @@
-import img20 from "../assets/img20.jpg"
-import bg1 from "../assets/bg1.jpg"
-import img17 from "../assets/img17.webp"
+import { motion } from "framer-motion";
+import img20 from "../assets/img20.jpg";
+import bg1 from "../assets/bg1.jpg";
+import img17 from "../assets/img17.webp";
+
 const MainAbout = () => {
   return (
-   <>
-   <section>
-  <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8  bg-white/80 text-dark rounded-xl mt-10">
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
-      <div>
-        <div className="max-w-lg md:max-w-none">
-          <h2 className="text-2xl  text-gray-900 ">
-            Since 2020, we ve been adding color to your spaces with the highest quality. 
-          </h2>
+    <>
+      {/* Sección introductoria con animación */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="mx-auto max-w-screen-xl px-6 py-12 bg-gradient-to-r from-gray-100 to-gray-300 rounded-xl mt-10 shadow-lg"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          >
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl leading-tight">
+              Since <span className="text-indigo-600">2020</span>, we’ve been adding color to your spaces with the highest quality.
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <img src={bg1} className="rounded-xl shadow-md" alt="Industrial painting expertise" />
+          </motion.div>
         </div>
-      </div>
+      </motion.section>
 
-      <div>
-        <img
-          src={bg1}
-          className="rounded"
-          alt=""
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8  bg-white/80 text-dark rounded-xl mt-10">
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-center md:gap-8">
-      <div className="md:col-span-3">
-        <img
-          src={img20}
-          className="rounded"
-          alt=""
-        />
-      </div>
-
-      <div className="md:col-span-1">
-        <div className="max-w-lg md:max-w-none">
-          
-
-          <p className="mt-4 text-gray-700">
-          Our mission is to offer professional painting services using high quality products for industrial and commercial environments, guaranteeing unbeatable and durable finishes, which exceed the expectations of our customers, ensuring their complete satisfaction through efficient and professional assistance. We value integrity, punctuality and attention to detail in every project we undertake.
-          </p>
+      {/* Sección de misión con imagen */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="mx-auto max-w-screen-xl px-6 py-12 bg-white rounded-xl mt-10 shadow-lg"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-8">
+          <motion.div className="md:col-span-3" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut" }}>
+            <img src={img20} className="rounded-xl shadow-md" alt="High-quality painting work" />
+          </motion.div>
+          <motion.div className="md:col-span-1" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut" }}>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Our mission is to provide professional painting services using high-quality materials for industrial environments. We guarantee long-lasting finishes that exceed expectations and ensure complete customer satisfaction.
+            </p>
+          </motion.div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </motion.section>
 
-
-
-<section>
-  <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8  bg-white/80 text-dark rounded-xl mt-10 mb-10">
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-center md:gap-8">
-      <div className="md:col-span-1">
-        <div className="max-w-lg md:max-w-none">
-         
-
-          <p className="mt-4 text-gray-700">
-          We aspire to expand our presence in the market and continuously innovate in techniques and materials. We want to be the first choice for those looking for quality, professionalism and results in the protection and beautification of their spaces.
-          </p>
+      {/* Sección de visión */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="mx-auto max-w-screen-xl px-6 py-12 bg-white rounded-xl mt-10 mb-10 shadow-lg"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-8">
+          <motion.div className="md:col-span-1" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut" }}>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              We aspire to expand our presence and continuously innovate in materials and techniques. Our goal is to be the first choice for clients looking for durability, professionalism, and superior results.
+            </p>
+          </motion.div>
+          <motion.div className="md:col-span-3" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut" }}>
+            <img src={img17} className="rounded-xl shadow-md" alt="Future goals in industrial painting" />
+          </motion.div>
         </div>
-      </div>
+      </motion.section>
+    </>
+  );
+};
 
-      <div className="md:col-span-3">
-        <img
-         src={img17}
-          className="rounded "
-          alt=""
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-
- </>
-    );
-   
-   
-}
-
-export default MainAbout
+export default MainAbout;
