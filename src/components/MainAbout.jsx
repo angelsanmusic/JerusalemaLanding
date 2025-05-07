@@ -7,7 +7,7 @@ const MainAbout = () => {
            
             
                 <h2 className="mt-10 text-lg text-center uppercase font-bold  text-black max-w-4xl bg-white/80 text-dark rounded-xl py-4 px-2">
-                Since 2015, we've been adding color to your spaces with the highest quality. 
+                Since 2015,  been adding color to your spaces with the highest quality. 
                 </h2>
     </h1>
     <div className="flex flex-row mt-10 justify-center mb-10">

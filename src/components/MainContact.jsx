@@ -1,154 +1,121 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 const MainContact = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Submitted", formData);
-    // Aquí podrías integrar el envío a un backend o API.
-  };
-
   return (
     <motion.div
-      className="flex w-full min-h-screen py-10 justify-center items-center bg-gray-100"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="max-w-screen-lg mx-auto p-5 rounded-lg shadow-lg"
     >
-      {/* Contenedor principal */}
-      <motion.div
-        className="flex flex-col md:flex-row w-full max-w-4xl p-8 bg-white rounded-xl shadow-lg"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        {/* Formulario */}
+      <div className="grid grid-cols-1 md:grid-cols-12 border bg-black rounded-lg">
+        {/* Sección de información de contacto */}
         <motion.div
-          className="w-full md:w-1/2 p-6"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="bg-black md:col-span-4 p-10 text-white rounded-l-lg"
         >
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Request a Quote
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring focus:ring-amber-500"
-              required
-            />
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring focus:ring-amber-500"
-              required
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring focus:ring-amber-500"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring focus:ring-amber-500"
-              required
-            />
-            <motion.button
-              type="submit"
-              className="w-full bg-amber-500 text-white font-bold py-3 rounded-lg hover:bg-amber-600 transition"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get Quote
-            </motion.button>
-          </form>
-        </motion.div>
-
-        {/* Sección de contacto */}
-        <motion.div
-          className="w-full md:w-1/2 mt-6 md:mt-0 text-center md:text-left bg-amber-500/90 text-white p-6 rounded-xl shadow-lg"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="text-2xl font-bold mb-3">Need a Quote?</h3>
-          <p className="text-lg text-blue-100">
-            Contact us for **industrial painting** solutions. We provide
-            **high-quality coatings** and **protective treatments** for all
-            types of projects.
+          <p className="mt-4 text-sm leading-7 font-regular uppercase">Contact</p>
+          <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight">
+            Get In <span className="text-amber-600">Touch</span>
+          </h3>
+          <p className="mt-4 leading-7 text-gray-200">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            s standard dummy text ever since the 1500s.
           </p>
 
-          <div className="mt-6 space-y-4">
-            <div className="flex items-center space-x-2">
-              <ion-icon
-                name="call-outline"
-                className="text-white text-xl"
-              ></ion-icon>
-              <span>
-                <a href="tel:+1 (470) 336-8172" className="hover:underline">
-                  +1 (470) 336-8172
-                </a>
-              </span>
+          {/* Información de contacto con animación */}
+          <motion.div className="flex items-center mt-5" whileHover={{ scale: 1.1 }}>
+            <span className="text-sm">House #14, Street #12, Darulaman Road, Kabul, Afghanistan.</span>
+          </motion.div>
+          <motion.div className="flex items-center mt-5" whileHover={{ scale: 1.1 }}>
+            <span className="text-sm">+93 749 99 65 50</span>
+          </motion.div>
+          <motion.div className="flex items-center mt-5" whileHover={{ scale: 1.1 }}>
+            <span className="text-sm">24/7</span>
+          </motion.div>
+        </motion.div>
+
+        {/* Formulario de contacto con animación */}
+        <motion.form
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          action="https://fabform.io/f/{form-id}"
+          method="post"
+          className="md:col-span-8 p-10 bg-amber-500 rounded-r-lg"
+        >
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-first-name">
+                First Name
+              </label>
+              <input
+                className="appearance-none block w-full bg-white text-black border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                id="grid-first-name"
+                type="text"
+                placeholder="Jane"
+              />
             </div>
-            <div className="flex items-center space-x-2">
-              <ion-icon
-                name="mail-outline"
-                className="text-white text-xl"
-              ></ion-icon>
-              <span>
-                <a
-                  href="mailto:jerusalemadiamond@gmail.com"
-                  className="hover:underline"
-                >
-                  jerusalemadiamond@gmail.com
-                </a>
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <ion-icon
-                name="location-outline"
-                className="text-white text-xl"
-              ></ion-icon>
-              <span>11, Street 342 Abcds</span>
+            <div className="w-full md:w-1/2 px-3">
+              <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-last-name">
+                Last Name
+              </label>
+              <input
+                className="appearance-none block w-full bg-white text-black border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                id="grid-last-name"
+                type="text"
+                placeholder="Doe"
+              />
             </div>
           </div>
 
-          <motion.button
-            className="mt-4 bg-white text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-slate-600 hover:text-white transition"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Contact Us
-          </motion.button>
-        </motion.div>
-      </motion.div>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-email">
+                Email Address
+              </label>
+              <input
+                className="appearance-none block w-full bg-white text-black border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                id="grid-email"
+                type="email"
+                placeholder="********@*****.**"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-message">
+                Your Message
+              </label>
+              <textarea
+                rows="10"
+                className="appearance-none block w-full bg-white text-black border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+              ></textarea>
+            </div>
+            <div className="flex justify-between w-full px-3">
+              <div className="md:flex md:items-center">
+                <label className="block text-white font-bold">
+                  <input className="mr-2 leading-tight" type="checkbox" />
+                  <span className="text-sm">Send me your newsletter!</span>
+                </label>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                className="shadow bg-amber-600 hover:bg-amber-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
+                type="submit"
+              >
+                Send Message
+              </motion.button>
+            </div>
+            <a href="https://veilmail.io/e/FkKh7o" className="font-medium text-indigo hover:underline">
+              Or click here to reveal our protected email address
+            </a>
+          </div>
+        </motion.form>
+      </div>
     </motion.div>
   );
 };
