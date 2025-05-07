@@ -46,7 +46,7 @@ const Header = () => {
           </div>
           <ul className="hidden lg:flex ml-14 space-x-12">
             {["Home", "About", "Projects", "Contact"].map((item, index) => {
-              const isActive = location.pathname === `/${item.toLowerCase()}`; // Verifica si es la ruta activa
+              const isActive = location.pathname === (item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`);
               return (
                 <motion.li
                   key={index}
@@ -61,7 +61,7 @@ const Header = () => {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   <Link
-                    to={`/${item.toLowerCase()}`}
+                    to={item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`}
                     className="relative group"
                   >
                     {item}
@@ -96,7 +96,7 @@ const Header = () => {
         }`}
       >
         {["Home", "About", "Projects", "Contact"].map((item, index) => {
-          const isActive = location.pathname === `/${item.toLowerCase()}`;
+          const isActive = location.pathname === (item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`);
           return (
             <motion.li
               key={index}
@@ -105,7 +105,7 @@ const Header = () => {
                 isActive ? "text-blue-700 font-bold" : ""
               }`}
             >
-              <Link to={`/${item.toLowerCase()}`}>{item}</Link>
+              <Link to={item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`}>{item}</Link>
             </motion.li>
           );
         })}

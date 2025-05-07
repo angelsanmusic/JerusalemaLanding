@@ -57,7 +57,7 @@ const MainHome = () => {
                   </h2>
                   <p className="mt-4 text-lg text-gray-700">
                     Whether you're refreshing a workspace or protecting
-                    surfaces, this paint offers a **long-lasting solution** for
+                    surfaces, this paint offers a <strong>long-lasting solution</strong> for
                     durability and easy maintenance.
                   </p>
                 </div>
@@ -78,7 +78,7 @@ const MainHome = () => {
         </section>
       </div>
 
-      {/* Sección de Imágenes */}
+      {/* Sección de Imágenes con títulos y descripciones */}
       <div className="flex items-center rounded-xl py-8 justify-center">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
@@ -103,7 +103,7 @@ const MainHome = () => {
               image:
                 "https://images.unsplash.com/photo-1581079949186-c0571c28b1ba?q=80&w=2026&auto=format&fit=crop",
             },
-          ].map(({ title, image }, index) => (
+          ].map(({ title, image, description }, index) => (
             <motion.div
               key={index}
               className="group relative rounded-xl cursor-pointer overflow-hidden hover:shadow-xl transition-all"
@@ -113,6 +113,11 @@ const MainHome = () => {
                 src={image}
                 alt={title}
               />
+              {/* Contenedor con el título y la descripción */}
+              <div className="absolute bottom-0 left-0 bg-black/70 text-white p-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-xl font-semibold">{title}</h3>
+                <p className="text-sm">{description}</p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -128,7 +133,7 @@ const CompletedProjectsCounter = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let target = 540;
+    let target = 742// Número objetivo
     let incrementSpeed = Math.ceil(target / 100);
 
     const interval = setInterval(() => {
