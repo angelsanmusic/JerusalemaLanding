@@ -1,41 +1,34 @@
-
-
-
-
-import img10 from "../assets/img10.webp"
-import img11 from "../assets/img11.webp"
-import img12 from "../assets/img12.webp"
-import img13 from "../assets/img13.webp"
-
-import img15 from "../assets/img15.webp"
-import img16 from "../assets/img16.webp"
-import img17 from "../assets/img17.webp"
-import img18 from "../assets/img18.webp"
+import { motion } from "framer-motion";
 
 const MainProjects = () => {
   return (
-   
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5"
+    >
+      {[...Array(4)].map((_, colIndex) => (
+        <motion.div
+          key={colIndex}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: colIndex * 0.2 }}
+          className="grid gap-4"
+        >
+          {[...Array(3)].map((_, imgIndex) => (
+            <motion.div key={imgIndex} whileHover={{ scale: 1.05 }}>
+              <img
+                className="h-auto max-w-full rounded-lg shadow-lg"
+                src={`https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-${colIndex * 3 + imgIndex}.jpg`}
+                alt={`Project ${colIndex * 3 + imgIndex}`}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+};
 
-    <div className="p-5 md:p-10 bg-white/50">
-      <div className="flex flex-col items-center mt-6 lg:mt-20">
-        <h1 className="tex-4xl sm:text-6xl lg:text-7xl  tracking-wide mt-4 text-lg text-center uppercase font-bold py-4 px-2">Atlanta</h1>
-      </div>
-    <div className="columns-1 gap-5 lg:gap-8 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5 lg:[&>img:not(:first-child)]:mt-8">
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img10} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img11} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img12} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img13} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img15} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img16} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img17} alt="" />
-      <img className="rounded-xl cursor-pointer object-cover transition duration-500 hover:scale-110" src={img18} alt="" />
-     
-    </div>
-  </div>
-  
-    
-
-  )
-}
-
-export default MainProjects
+export default MainProjects;

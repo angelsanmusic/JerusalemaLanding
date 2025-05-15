@@ -1,37 +1,42 @@
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.svg";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/c1.png";
 import { motion } from "framer-motion";
 
 const Header = () => {
+  const navigation = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Projects", path: "/projects" },
+  ];
+
   return (
     <motion.header
-      className="w-full text-gray-700 bg-white border-t border-gray-100 shadow-sm body-font"
+      className="w-full text-gray-700 bg-slate-50 border-t border-gray-100 shadow-sm body-font"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="container flex flex-col flex-wrap items-center p-2 mx-4 md:flex-row">
         <nav className="flex flex-wrap items-center text-base lg:w-2/5 md:ml-auto">
-          {[
-            { name: "Home", path: "/" },
-            { name: "About", path: "/about" },
-            { name: "Services", path: "/services" },
-            { name: "Projects", path: "/projects" },
-            
-          ].map((item, index) => (
+          {navigation.map((item, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.1, y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link
+              <NavLink
                 to={item.path}
-                className="mr-5 font-medium transition-all duration-100 hover:scale-110 hover:-translate-y-1 hover:text-amber-500"
+                className={({ isActive }) =>
+                  `mr-5 font-medium transition-all duration-100 ${
+                    isActive
+                      ? "scale-110 -translate-y-1 text-amber-500"
+                      : "hover:scale-110 hover:-translate-y-1 hover:text-amber-500"
+                  }`
+                }
               >
                 {item.name}
-              </Link>
+              </NavLink>
             </motion.div>
           ))}
         </nav>
