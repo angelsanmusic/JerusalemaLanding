@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/c1.png";
+import logo1 from "../assets/logo1.png";
 import { motion } from "framer-motion";
 
 const Header = () => {
@@ -44,7 +44,7 @@ const Header = () => {
         <Link to="/">
           <motion.img
             className="w-auto h-40"
-            src={logo}
+            src={logo1}
             alt="Logo de la empresa"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}

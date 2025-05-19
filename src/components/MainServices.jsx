@@ -33,14 +33,21 @@ const Card = ({ title, category, description, imgSrc, alignRight }) => {
           whileHover={{ scale: 1.05 }}
         />
       </motion.div>
-      <motion.div className="p-6" initial="initial" animate="animate" variants={fadeInUp}>
+      <motion.div
+        className="p-6"
+        initial="initial"
+        animate="animate"
+        variants={fadeInUp}
+      >
         <h6 className="block mb-4 text-base font-semibold leading-relaxed tracking-normal text-gray-700 uppercase">
           {category}
         </h6>
         <h4 className="block mb-2 text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900">
           {title}
         </h4>
-        <p className="block mb-8 text-base leading-relaxed text-gray-700">{description}</p>
+        <p className="block mb-8 text-base leading-relaxed text-gray-700">
+          {description}
+        </p>
       </motion.div>
     </motion.div>
   );
@@ -53,7 +60,8 @@ const CardsList = () => {
       category: "Surface Cleaning",
       description:
         "Proper surface preparation ensures durable coatings. Techniques like sandblasting, chemical cleaning, and abrasive blasting improve adhesion and longevity.",
-      imgSrc: "https://img.freepik.com/free-photo/medium-shot-man-painting-car-door_23-2149714300.jpg?w=1380",
+      imgSrc:
+        "https://img.freepik.com/free-photo/medium-shot-man-painting-car-door_23-2149714300.jpg?w=1380",
       alignRight: false,
     },
     {
@@ -61,7 +69,8 @@ const CardsList = () => {
       category: "Anti-Corrosion Solutions",
       description:
         "Industrial structures need advanced protection. Epoxy paints, polyurethane coatings, and zinc-based primers defend against rust and chemical exposure.",
-      imgSrc: "https://img.freepik.com/free-photo/side-view-worker-spraying-powder-paint-from-gun_23-2149878745.jpg?w=1380",
+      imgSrc:
+        "https://img.freepik.com/free-photo/side-view-worker-spraying-powder-paint-from-gun_23-2149878745.jpg?w=1380",
       alignRight: true,
     },
     {
@@ -69,7 +78,8 @@ const CardsList = () => {
       category: "Slip-Resistant Flooring",
       description:
         "Factories and warehouses need durable flooring. Epoxy and polyurethane coatings provide impact resistance, chemical protection, and slip resistance.",
-      imgSrc: "https://img.freepik.com/free-photo/empty-garage-with-parking-lots_342744-1241.jpg?w=1380",
+      imgSrc:
+        "https://img.freepik.com/free-photo/empty-garage-with-parking-lots_342744-1241.jpg?w=1380",
       alignRight: false,
     },
     {
@@ -77,7 +87,8 @@ const CardsList = () => {
       category: "Metal Protection",
       description:
         "Steel structures need specialized coatings for longevity. Fire-resistant paints, zinc-rich primers, and industrial-grade polymer coatings enhance durability.",
-      imgSrc: "https://img.freepik.com/free-photo/abstract-red-construction-blue-sky_23-2148744259.jpg?w=996",
+      imgSrc:
+        "https://img.freepik.com/free-photo/abstract-red-construction-blue-sky_23-2148744259.jpg?w=996",
       alignRight: true,
     },
     {
@@ -85,7 +96,8 @@ const CardsList = () => {
       category: "Sustainable Coatings",
       description:
         "Industries prioritize eco-friendly solutions. Low-VOC paints, water-based coatings, and sustainable finishes minimize environmental impact while ensuring durability.",
-      imgSrc: "https://img.freepik.com/free-photo/tools-art-repairing-paint-top-view_185193-108867.jpg?w=1380",
+      imgSrc:
+        "https://img.freepik.com/free-photo/tools-art-repairing-paint-top-view_185193-108867.jpg?w=1380",
       alignRight: false,
     },
   ];

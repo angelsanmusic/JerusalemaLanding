@@ -7,21 +7,32 @@ const ParallaxSection = ({ scrollY }) => {
     <motion.div
       className="relative flex items-center justify-center bg-cover bg-center min-h-[80vh] z-10"
       style={{ backgroundImage: "url('https://source.unsplash.com/random')" }}
-      animate={{ y: -scrollY * 0.05 }} // Se redujo el efecto para evitar solapamientos
+      animate={{ y: -scrollY * 0.05 }}
       transition={{ type: "spring", stiffness: 50 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
     >
       <section className="w-full py-24 flex items-center justify-center bg-white/80">
-        <div className="mx-auto max-w-[43rem] text-center">
+        <motion.div
+          className="mx-auto max-w-[43rem] text-center"
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           <p className="text-lg font-medium leading-8 text-indigo-600/95">
-            Industrial painting experts: quality, durability, and precision in every project.
+            Industrial painting experts: quality, durability, and precision in
+            every project.
           </p>
           <h1 className="mt-3 text-[3rem] font-bold leading-[3.5rem] tracking-tight text-black">
-            Specialized services in anti-corrosion protection, high-resistance coatings, and professional finishes.
+            Specialized services in anti-corrosion protection, high-resistance
+            coatings, and professional finishes.
           </h1>
           <p className="mt-3 text-lg leading-relaxed text-slate-400">
-            Extend the lifespan of your structures with our team of specialists. Contact us today!
+            Extend the lifespan of your structures with our team of specialists.
+            Contact us today!
           </p>
-        </div>
+        </motion.div>
       </section>
     </motion.div>
   );
@@ -31,6 +42,10 @@ const FeatureCard = ({ color, title }) => {
   return (
     <motion.div
       className={`p-6 flex flex-col items-center text-center group hover:bg-slate-50/95 cursor-pointer ${color} text-gray-800 shadow-lg rounded-lg`}
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
     >
       <p className="text-xl font-medium mt-3">{title}</p>
     </motion.div>
@@ -56,47 +71,88 @@ const MainHome = () => {
   ];
 
   return (
-    <div className="px-6 md:px-20 lg:px-40 border-t border-b py-20 bg-opacity-10">
-      <ParallaxSection scrollY={scrollY} />
+    <div className="bg-white/50">
+      <div className="px-6 md:px-20 lg:px-40 border-t border-b py-20">
+        <ParallaxSection scrollY={scrollY} />
 
-      {/* Nueva sección añadida */}
-      <div className="  py-20 relative z-20">
-        <div className="container mx-auto text-center dark:text-white">
-          <h2 className="font-bold text-2xl md:text-4xl my-6">
-            What is included in the AI Tool Service?
-          </h2>
-          <div className="max-w-2xl md:max-w-4xl mx-auto dark:text-gray-300">
-            <p>
-              Our AI Tool Service encompasses a comprehensive analysis with over 50 modules, examining more than
-              200 data points. We offer 5 distinct functionalities and support 4 different file formats.
+        <motion.div
+          className="py-20 relative z-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="container mx-auto text-center">
+            <h2 className="font-bold text-2xl md:text-4xl my-6">
+              Innovation and precision in industrial coatings. What makes us
+              unique?
+            </h2>
+            <div className="max-w-2xl md:max-w-4xl mx-auto">
+              <p>
+                Our commitment to excellence in industrial coatings is built on
+                precision, innovation, and safety. Leveraging advanced
+                technology and expert craftsmanship, we ensure reliability and
+                efficiency in every project. Here’s what sets us apart:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 relative z-20">
+              {features.map((feature, index) => (
+                <FeatureCard key={index} {...feature} />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Sección de Experiencia y Proyectos Completados */}
+        <motion.div
+          className="py-20 text-center bg-gray-900 text-white mt-16"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div className="container mx-auto max-w-2xl">
+            <h2 className="text-4xl font-extrabold text-indigo-400">
+              Over 7 Years of Experience
+            </h2>
+            <p className="text-lg text-gray-300 mt-4 leading-relaxed">
+              With more than 300 completed projects, we take pride in delivering{" "}
+              <strong>precision, quality, and innovation</strong> in every
+              industrial coating solution.
             </p>
           </div>
 
-          {/* Sección de estadísticas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
-            {[
-              { value: "150+", label: "Features Analyzed", color: "text-yellow-500" },
-              { value: "60+", label: "Modules", color: "text-teal-500" },
-              { value: "5+", label: "Functionalities", color: "text-pink-500" },
-              { value: "4+", label: "File Formats Supported", color: "text-violet-500" },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="p-6 border flex flex-col items-center rounded-lg shadow-md dark:bg-gray-800"
+          {/* Animación de números */}
+          <motion.div
+            className="mt-12 flex justify-center space-x-8 text-3xl font-bold"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+          >
+            <div className="bg-indigo-500 text-white px-6 py-4 rounded-lg shadow-md">
+              <motion.span
+                className="text-5xl"
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
               >
-                <div className={`text-4xl font-bold ${item.color}`}>{item.value}</div>
-                <div className="text-gray-500 uppercase mt-2">{item.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+                7+
+              </motion.span>
+              <p className="text-sm">Years of Experience</p>
+            </div>
 
-      {/* Sección de características */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 relative z-20">
-        {features.map((feature, index) => (
-          <FeatureCard key={index} {...feature} />
-        ))}
+            <div className="bg-blue-500 text-white px-6 py-4 rounded-lg shadow-md">
+              <motion.span
+                className="text-5xl"
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: 0.8 }}
+              >
+                300+
+              </motion.span>
+              <p className="text-sm">Completed Projects</p>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

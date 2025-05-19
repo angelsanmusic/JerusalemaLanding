@@ -16,25 +16,22 @@ const MainContact = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="bg-black md:col-span-4 p-10 text-white rounded-l-lg"
         >
-          <p className="mt-4 text-sm leading-7 font-regular uppercase">Contact</p>
+          
           <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight">
             Get In <span className="text-amber-600">Touch</span>
           </h3>
           <p className="mt-4 leading-7 text-gray-200">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            s standard dummy text ever since the 1500s.
+            Our commitment to excellence in industrial coatings is built on precision, innovation, and safety. Leveraging advanced technology and expert craftsmanship, we ensure reliability and efficiency in every project.
           </p>
 
           {/* Información de contacto con animación */}
           <motion.div className="flex items-center mt-5" whileHover={{ scale: 1.1 }}>
-            <span className="text-sm">House #14, Street #12, Darulaman Road, Kabul, Afghanistan.</span>
+            <span className="text-sm">warnockcontractingassociates@gmail.com</span>
           </motion.div>
           <motion.div className="flex items-center mt-5" whileHover={{ scale: 1.1 }}>
-            <span className="text-sm">+93 749 99 65 50</span>
+            <span className="text-sm">+1 678-668-0646</span>
           </motion.div>
-          <motion.div className="flex items-center mt-5" whileHover={{ scale: 1.1 }}>
-            <span className="text-sm">24/7</span>
-          </motion.div>
+          
         </motion.div>
 
         {/* Formulario de contacto con animación */}
