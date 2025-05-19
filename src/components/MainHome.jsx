@@ -133,7 +133,7 @@ const CompletedProjectsCounter = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let target = 742// Número objetivo
+    let target = 745// Número objetivo
     let incrementSpeed = Math.ceil(target / 100);
 
     const interval = setInterval(() => {
