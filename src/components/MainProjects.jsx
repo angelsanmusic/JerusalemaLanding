@@ -10,9 +10,10 @@ import m1 from "../assets/m1.webp";
 import m2 from "../assets/m2.webp";
 import m3 from "../assets/m3.webp";
 import m4 from "../assets/m4.webp";
-import m5 from "../assets/m5.jpg";
-import m6 from "../assets/m6.jpg";
-import m7 from "../assets/m7.jpg";
+import m5 from "../assets/m5.webp";
+import m6 from "../assets/m6.webp";
+import m7 from "../assets/m7.webp";
+
 
 const MainProjects = () => {
   return (
