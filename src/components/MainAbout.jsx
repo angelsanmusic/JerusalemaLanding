@@ -1,13 +1,25 @@
 import img3 from "../assets/img3.jpg";
+import { motion } from "framer-motion";
 
 const MainAbout = () => {
   return (
     <div className="bg-gray-50/70">
       <div className="py-8 md:py-16 max-w-[1200px] mx-auto px-4">
         <div className="space-y-16">
-          {/* Bloque: Advanced Facial Recognition */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-16 text-center md:text-left">
-            <div className="flex-1 space-y-4">
+          {/* Bloque: Vision */}
+          <motion.div
+            className="flex flex-col md:flex-row md:items-center md:justify-center gap-16 text-center md:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="flex-1 space-y-4"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
               <h3 className="font-medium text-2xl">Vision</h3>
               <p>
                 To be the most trusted and recognized industrial and commercial
@@ -15,45 +27,70 @@ const MainAbout = () => {
                 corporations and retail chains across the United States and
                 international markets.
               </p>
-            </div>
-            <div className="flex-1">
+            </motion.div>
+
+            <motion.div
+              className="flex-1"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
               <div className="aspect-video">
-                <img
+                <motion.img
                   src={img3}
                   alt="Advanced Facial Recognition"
                   className="object-cover w-full h-full rounded-lg shadow-md"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
                 />
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Bloque: Multi-Device Synchronization */}
-          <div className="flex flex-col md:flex-row-reverse md:items-center md:justify-center gap-16 text-center md:text-left">
-            <div className="flex-1 space-y-4">
-              <h3 className="font-medium text-2xl">Mission</h3>
-              <p>
-                Multi-Device Synchronization
-                <br />
-                We deliver industrial and commercial painting services with
-                precision and excellence, ensuring flawless results for
-                industry-leading companies. Our expertise lies in securing
-                high-value contracts and strategic projects, allowing our
-                clients to enhance their spaces with confidence and
-                professionalism.
-              </p>
-            </div>
-            <div className="flex-1">
-              <div className="aspect-video">
-                <img
-                  src={img3}
-                  alt="Multi-Device Synchronization"
-                  className="object-cover w-full h-full rounded-lg shadow-md"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          {/* Bloque: Mission */}
+<motion.div 
+  className="flex flex-col md:flex-row-reverse md:items-center md:justify-center gap-16 text-center md:text-left"
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+>
+  <motion.div 
+    className="flex-1 space-y-4"
+    initial={{ opacity: 0, x: 30 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.7, delay: 0.2 }}
+  >
+    <h3 className="font-medium text-2xl">Mission</h3>
+    <p>
+      Multi-Device Synchronization
+      <br />
+      We deliver industrial and commercial painting services with precision and excellence, ensuring flawless results for
+      industry-leading companies. Our expertise lies in securing high-value contracts and strategic projects, allowing our
+      clients to enhance their spaces with confidence and professionalism.
+    </p>
+  </motion.div>
+
+  <motion.div 
+    className="flex-1"
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.7, delay: 0.3 }}
+  >
+    <div className="aspect-video">
+      <motion.img
+        src={img3}
+        alt="Multi-Device Synchronization"
+        className="object-cover w-full h-full rounded-lg shadow-md"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      />
+    </div>
+  </motion.div>
+</motion.div>
+
 
       {/* Nueva sección con iconos */}
       <div className="container mx-auto max-w-5xl flex flex-wrap gap-12 items-start justify-center md:justify-between py-20">
@@ -256,6 +293,8 @@ const MainAbout = () => {
         </p>
         <div className="mt-8">
           <a href="#" target="_blank" className="block"></a>
+        </div>
+      </div>
         </div>
       </div>
     </div>
