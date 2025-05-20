@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 const MainAbout = () => {
   return (
     <div className="bg-gray-50/70">
+      
       <div className="py-8 md:py-16 max-w-[1200px] mx-auto px-4">
         <div className="space-y-16">
           {/* Bloque: Vision */}
