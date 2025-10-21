@@ -22,6 +22,7 @@ import m5 from "../assets/m5.webp";
 import m6 from "../assets/m6.webp";
 import m7 from "../assets/m7.webp";
 import ThumbnailGrid from "./ThumbnailGrid";
+import WhatsAppButton from "./WhatsAppButton";
 
 const AtlantaModal = lazy(() => import("./AtlantaModal"));
 const MiamiModal = lazy(() => import("./MiamiModal"));
