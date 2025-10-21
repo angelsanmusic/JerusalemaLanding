@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState, useMemo, useTransition, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useState, useTransition } from "react";
 import img10 from "../assets/img10.webp";
 import img11 from "../assets/img11.webp";
 import img12 from "../assets/img12.webp";
