@@ -125,17 +125,10 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-16 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="flex mt-16 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-center gap-4"
         >
           <p className="text-zinc-300 text-sm">© 2025 Jerusalema Diamond Company. All rights reserved.</p>
-          <div className="flex gap-6 text-sm text-zinc-300">
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Terms of Service
-            </a>
-          </div>
+         
         </motion.div>
       </div>
     </footer>

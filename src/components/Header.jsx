@@ -1,117 +1,143 @@
-import { Link, useLocation } from "react-router-dom";
-import logo1 from "../assets/logo1.svg";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+"use client"
 
-const Header = () => {
-  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const location = useLocation(); // Detectar la ruta actual
+import { AnimatePresence, motion } from "framer-motion"
+import { Menu, X } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Link, useLocation } from "react-router-dom"
+import logo from "../assets/logo1.svg"
 
-  const toggleNavbar = () => {
-    setMobileDrawerOpen(!mobileDrawerOpen);
-  };
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
+  { name: "Projects", path: "/projects" },
+  
+]
+
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [location.pathname])
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      const handleScroll = () => setIsMobileMenuOpen(false)
+      window.addEventListener("scroll", handleScroll)
+      return () => window.removeEventListener("scroll", handleScroll)
+    }
+  }, [isMobileMenuOpen])
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`sticky top-0 z-50 py-3 backdrop-blur-md border-b border-neutral-700/80 transition-all duration-500 ${
-        scrolled ? "bg-white/10 backdrop-blur-lg shadow-lg" : "bg-transparent"
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/80 backdrop-blur-xl shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container px-4 mx-auto relative text-sm">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center flex-shrink-0">
-            <motion.img
-              className="h-20 w-15 mr-1"
-              src={logo1}
-              alt="logo"
-              whileHover={{ scale: 1.1, rotate: 3 }}
-              transition={{ duration: 0.4 }}
-            />
-            <span className="text-xl tracking-tight items-center">
-              Jerusalema Diamond
-            </span>
-          </div>
-          <ul className="hidden lg:flex ml-14 space-x-12">
-            {["Home", "About", "Projects", "Contact"].map((item, index) => {
-              const isActive = location.pathname === (item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`);
-              return (
-                <motion.li
-                  key={index}
-                  className={`relative px-4 py-2 rounded-xl cursor-pointer ${
-                    isActive ? "bg-blue-700 text-white" : ""
-                  }`}
-                  whileHover={{
-                    scale: 1.2,
-                    rotate: 2,
-                    textShadow: "0px 0px 10px rgba(255,255,255,0.9)",
-                  }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                  <Link
-                    to={item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`}
-                    className="relative group"
-                  >
-                    {item}
-                    <motion.span
-                      className={`absolute left-0 bottom-0 w-full h-0.5 ${
-                        isActive ? "bg-white" : "bg-blue-500"
-                      } scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}
-                    />
-                  </Link>
-                </motion.li>
-              );
-            })}
-          </ul>
-          <div className="lg:hidden md:flex flex-col justify-center">
-            <button onClick={toggleNavbar} aria-label="Toggle Menu">
-              {mobileDrawerOpen ? <X /> : <Menu />}
-            </button>
-          </div>
-        </div>
-      </div>
+      <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 md:gap-3 group">
+              <motion.img
+                src={logo}
+                alt="Jerusalema Diamond"
+                className="h-10 sm:h-12 lg:h-14 w-auto relative z-10 drop-shadow-2xl"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
+            <div className="flex flex-col">
+              <span className="text-sm md:text-base lg:text-lg  tracking-tight text-zinc-900 group-hover:text-zinc-600 transition-colors">
+                Jerusalema Diamond
+              </span>
 
-      {/* Menú móvil animado */}
-      <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        animate={{
-          opacity: mobileDrawerOpen ? 1 : 0,
-          x: mobileDrawerOpen ? 0 : 100,
-        }}
-        transition={{ duration: 0.3 }}
-        className={`fixed right-0 z-20 w-full p-12 flex flex-col justify-center items-center bg-white/90 lg:hidden ${
-          mobileDrawerOpen ? "block" : "hidden"
-        }`}
-      >
-        {["Home", "About", "Projects", "Contact"].map((item, index) => {
-          const isActive = location.pathname === (item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`);
-          return (
-            <motion.li
-              key={index}
-              whileHover={{ scale: 1.1 }}
-              className={`hover:text-blue-800 py-4 ${
-                isActive ? "text-blue-700 font-bold" : ""
-              }`}
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-1 lg:gap-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="relative px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-zinc-700 hover:text-zinc-500 transition-colors"
+              >
+                {item.name}
+                {location.pathname === item.path && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-700"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </Link>
+            ))}
+
+            <motion.a
+              href="/contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="ml-2 lg:ml-4 px-4 lg:px-6 py-2 bg-blue-700 text-white text-sm lg:text-base font-medium rounded-full hover:bg-blue-800 transition-colors"
             >
-              <Link to={item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`}>{item}</Link>
-            </motion.li>
-          );
-        })}
-      </motion.div>
-    </motion.nav>
-  );
-};
+              Contact
+            </motion.a>
+          </div>
 
-export default Header;
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-zinc-700 hover:text-zinc-900 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-zinc-200"
+          >
+            <div className="px-4 py-4 space-y-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                    location.pathname === item.path ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-100"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+
+              <a
+                href="/contact"
+                className="block px-4 py-3 mt-2 text-center bg-zinc-900 text-white text-base font-medium rounded-lg hover:bg-zinc-800 transition-colors"
+              >
+                Contact
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
+  )
+}
