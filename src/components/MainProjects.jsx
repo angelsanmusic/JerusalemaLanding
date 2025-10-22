@@ -23,7 +23,7 @@ import m7 from "../assets/m7.webp";
 import AtlantaModal from "./AtlantaModal";
 import MiamiModal from "./MiamiModal";
 import ThumbnailGrid from "./ThumbnailGrid";
-import WhatsAppButton from "./WhatsAppButton";
+
 
 // helper simple para prefetch de imágenes (usa scheduleIdle) con dedupe
 const _prefetchSet = new Set();
@@ -234,7 +234,6 @@ const MainProjects = React.memo(() => {
         />
       )}
 
-      <WhatsAppButton />
     </div>
   );
 });
