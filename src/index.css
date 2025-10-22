@@ -5,7 +5,7 @@
 
 :root{
     font-family: "Poppins", sans-serif;
-    background: url('./assets/fondo1.jpg') no-repeat;
+    background: url('./assets/fondo1.webp') no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;

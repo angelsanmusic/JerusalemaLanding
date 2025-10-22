@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import React, { Suspense, lazy, useCallback, useEffect, useMemo, useState, useTransition } from "react";
+import React, { useCallback, useEffect, useMemo, useState, useTransition } from "react";
 import img10 from "../assets/img10.webp";
 import img11 from "../assets/img11.webp";
 import img12 from "../assets/img12.webp";
@@ -7,13 +6,13 @@ import img15 from "../assets/img15.webp";
 import img16 from "../assets/img16.webp";
 import img17 from "../assets/img17.webp";
 import img18 from "../assets/img18.webp";
-import img21 from "../assets/img21.jpg";
-import img22 from "../assets/img22.jpg";
-import img23 from "../assets/img23.jpg";
-import img24 from "../assets/img24.jpg";
-import img25 from "../assets/img25.jpg";
-import img26 from "../assets/img26.jpg";
-import img27 from "../assets/img27.jpg";
+import img21 from "../assets/img21.webp";
+import img22 from "../assets/img22.webp";
+import img23 from "../assets/img23.webp";
+import img24 from "../assets/img24.webp";
+import img25 from "../assets/img25.webp";
+import img26 from "../assets/img26.webp";
+import img27 from "../assets/img27.webp";
 import m1 from "../assets/m1.webp";
 import m2 from "../assets/m2.webp";
 import m3 from "../assets/m3.webp";
@@ -21,13 +20,13 @@ import m4 from "../assets/m4.webp";
 import m5 from "../assets/m5.webp";
 import m6 from "../assets/m6.webp";
 import m7 from "../assets/m7.webp";
+import AtlantaModal from "./AtlantaModal";
+import MiamiModal from "./MiamiModal";
 import ThumbnailGrid from "./ThumbnailGrid";
 import WhatsAppButton from "./WhatsAppButton";
 
-const AtlantaModal = lazy(() => import("./AtlantaModal"));
-const MiamiModal = lazy(() => import("./MiamiModal"));
-
-// Prefetch helpers
+// helper simple para prefetch de imágenes (usa scheduleIdle) con dedupe
+const _prefetchSet = new Set();
 const scheduleIdle = (fn) => {
 	if (typeof window !== "undefined" && "requestIdleCallback" in window) {
 		window.requestIdleCallback(fn, { timeout: 2000 });
@@ -36,7 +35,8 @@ const scheduleIdle = (fn) => {
 	}
 };
 const prefetchImage = (src) => {
-	if (!src) return;
+	if (!src || _prefetchSet.has(src)) return;
+	_prefetchSet.add(src);
 	scheduleIdle(() => {
 		const img = new Image();
 		img.src = src;
@@ -76,6 +76,10 @@ const MainProjects = React.memo(() => {
   const [miamiSelected, setMiamiSelected] = useState(0);
   const [miamiModal, setMiamiModal] = useState(false);
   const [isPending, startTransition] = useTransition();
+
+  // estados para animar la entrada de las secciones con CSS (no framer-motion)
+  const [atlantaVisible, setAtlantaVisible] = useState(false);
+  const [miamiVisible, setMiamiVisible] = useState(false);
 
   // Prefetch en hover miniaturas
   const handleHoverPrefetch = useCallback((index, list) => {
@@ -131,19 +135,27 @@ const MainProjects = React.memo(() => {
   const handleMiamiNext = useCallback(() => setMiamiSelected(s => (s + 1) % miamiImages.length), [miamiImages]);
   const handleMiamiClose = useCallback(() => setMiamiModal(false), []);
 
+  useEffect(() => {
+    // activar animaciones de entrada después del mount (ligero stagger)
+    const t1 = setTimeout(() => setAtlantaVisible(true), 80);
+    const t2 = setTimeout(() => setMiamiVisible(true), 260);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
+
   return (
     <div className="relative p-6 md:p-12 bg-white/50">
       {/* Sección Atlanta */}
-      <motion.div
-        className="flex flex-col items-center mt-10 md:mt-20 relative z-10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
+      <div
+        className={`flex flex-col items-center mt-10 md:mt-20 relative z-10 transition-all duration-700 ease-out
+          ${atlantaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
         <h1 className="text-4xl md:text-6xl font-extrabold uppercase text-gray-900 tracking-wide">Atlanta</h1>
+
         <div
-          className="mt-8 w-full max-w-xl cursor-pointer hover:scale-105 transition-transform duration-300"
+          className="mt-8 w-full max-w-xl cursor-pointer transition-transform duration-300"
           onClick={openAtlanta}
           onMouseEnter={preloadAtlantaModal}
         >
@@ -151,9 +163,11 @@ const MainProjects = React.memo(() => {
             src={atlantaImages[atlantaSelected].src}
             alt=""
             loading="lazy"
-            className="rounded-xl shadow-lg object-cover w-full h-64 md:h-80"
+            style={{ aspectRatio: "16/9" }}
+            className="rounded-xl shadow-md object-cover w-full h-64 md:h-80"
           />
         </div>
+
         <div className="w-full max-w-4xl mx-auto mt-8">
           <ThumbnailGrid
             images={atlantaImages}
@@ -163,19 +177,17 @@ const MainProjects = React.memo(() => {
             onHoverPrefetch={(index) => handleHoverPrefetch(index, atlantaImages)}
           />
         </div>
-      </motion.div>
+      </div>
 
       {/* Sección Miami */}
-      <motion.div
-        className="flex flex-col items-center mt-10 md:mt-20 relative z-10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
+      <div
+        className={`flex flex-col items-center mt-10 md:mt-20 relative z-10 transition-all duration-700 ease-out
+          ${miamiVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
         <h1 className="text-4xl md:text-6xl font-extrabold uppercase text-gray-900 tracking-wide">Miami</h1>
+
         <div
-          className="mt-8 w-full max-w-xl cursor-pointer hover:scale-105 transition-transform duration-300"
+          className="mt-8 w-full max-w-xl cursor-pointer transition-transform duration-300"
           onClick={openMiami}
           onMouseEnter={preloadMiamiModal}
         >
@@ -183,9 +195,11 @@ const MainProjects = React.memo(() => {
             src={miamiImages[miamiSelected].src}
             alt=""
             loading="lazy"
-            className="rounded-xl shadow-lg object-cover w-full h-64 md:h-80"
+            style={{ aspectRatio: "16/9" }}
+            className="rounded-xl shadow-md object-cover w-full h-64 md:h-80"
           />
         </div>
+
         <div className="w-full max-w-4xl mx-auto mt-8">
           <ThumbnailGrid
             images={miamiImages}
@@ -195,52 +209,32 @@ const MainProjects = React.memo(() => {
             onHoverPrefetch={(index) => handleHoverPrefetch(index, miamiImages)}
           />
         </div>
-      </motion.div>
+      </div>
 
       {/* Modales cargados por demanda */}
       {atlantaModal && (
-        <Suspense
-          fallback={
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <svg className="animate-spin h-12 w-12 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-              </svg>
-            </div>
-          }
-        >
-          <AtlantaModal
-            isOpen={atlantaModal}
-            images={atlantaImages}
-            selectedIndex={atlantaSelected}
-            onClose={handleAtlantaClose}
-            onPrev={handleAtlantaPrev}
-            onNext={handleAtlantaNext}
-          />
-        </Suspense>
+        <AtlantaModal
+          isOpen={atlantaModal}
+          images={atlantaImages}
+          selectedIndex={atlantaSelected}
+          onClose={handleAtlantaClose}
+          onPrev={handleAtlantaPrev}
+          onNext={handleAtlantaNext}
+        />
       )}
 
       {miamiModal && (
-        <Suspense
-          fallback={
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <svg className="animate-spin h-12 w-12 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-              </svg>
-            </div>
-          }
-        >
-          <MiamiModal
-            isOpen={miamiModal}
-            images={miamiImages}
-            selectedIndex={miamiSelected}
-            onClose={handleMiamiClose}
-            onPrev={handleMiamiPrev}
-            onNext={handleMiamiNext}
-          />
-        </Suspense>
+        <MiamiModal
+          isOpen={miamiModal}
+          images={miamiImages}
+          selectedIndex={miamiSelected}
+          onClose={handleMiamiClose}
+          onPrev={handleMiamiPrev}
+          onNext={handleMiamiNext}
+        />
       )}
+
+      <WhatsAppButton />
     </div>
   );
 });

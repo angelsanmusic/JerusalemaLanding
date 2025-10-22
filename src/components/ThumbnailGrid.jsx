@@ -1,8 +1,23 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 
 const ThumbnailGrid = ({ images = [], selectedIndex = 0, onSelect = () => {}, columns = 7, onHoverPrefetch = () => {} }) => {
 	// Grid responsivo: 2 columnas en móvil, 4 en tablet, 7 en desktop
 	const gridClasses = "grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mt-6";
+
+	// Debounce interno para onHoverPrefetch (evita muchas llamadas al pasar rápido)
+	const hoverTimer = useRef(null);
+	const handleMouseEnter = (index) => {
+		clearTimeout(hoverTimer.current);
+		hoverTimer.current = setTimeout(() => {
+			onHoverPrefetch(index);
+		}, 120); // 120ms debounce
+	};
+	const handleMouseLeave = () => {
+		if (hoverTimer.current) {
+			clearTimeout(hoverTimer.current);
+			hoverTimer.current = null;
+		}
+	};
 
 	const thumbs = useMemo(
 		() =>
@@ -12,12 +27,13 @@ const ThumbnailGrid = ({ images = [], selectedIndex = 0, onSelect = () => {}, co
 					src={img.src}
 					alt=""
 					loading="lazy"
-					onMouseEnter={() => onHoverPrefetch(index)}
+					onMouseEnter={() => handleMouseEnter(index)}
+					onMouseLeave={handleMouseLeave}
 					onClick={() => onSelect(index)}
-					className={`h-20 w-full object-cover rounded-lg cursor-pointer border-2 shadow-md transition-all duration-200
-            hover:scale-110 hover:z-10 hover:shadow-xl
-            ${selectedIndex === index ? "border-blue-500 ring-2 ring-blue-300" : "border-transparent"}`}
-					style={{ background: "#f8fafc" }}
+					// estilos ligeros: pequeña escala y sombra minimal, promote transform to GPU
+					className={`w-full object-cover rounded-lg cursor-pointer border-2 transition-transform duration-150
+            ${selectedIndex === index ? "border-blue-500 ring-1 ring-blue-200" : "border-transparent"}`}
+					style={{ height: "5rem", objectFit: "cover", aspectRatio: "1/1", willChange: "transform" }}
 				/>
 			)),
 		[images, selectedIndex, onSelect, onHoverPrefetch]

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import img20 from "../assets/img20.jpg";
-import bg1 from "../assets/bg1.jpg";
+import img20 from "../assets/img20.webp";
+import bg1 from "../assets/bg1.webp";
 import img17 from "../assets/img17.webp";
 
 const MainAbout = () => {
